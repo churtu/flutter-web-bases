@@ -10,9 +10,7 @@ class CustomAppMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return (constraints.maxWidth > 576)
-          ? const _MdMenu()
-          : const _SmMenu();
+        return (constraints.maxWidth > 576) ? const _MdMenu() : const _SmMenu();
       },
     );
   }
@@ -26,37 +24,10 @@ class _MdMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
       child: Row(
-        children: [
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/statefull');
-            }, 
-            text: 'Contador Stateful',
-            color: Colors.black,
-          ),
-          const SizedBox( width: 10 ),
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/provider');
-            }, 
-            text: 'Contador con Provider',
-            color: Colors.black,
-          ),
-          const SizedBox( width: 10 ),
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/no-existe');
-            }, 
-            text: 'Pagina 404',
-            color: Colors.black,
-          ),
-        ],
+        children: _buildButtons()
       ),
     );
   }
@@ -70,39 +41,57 @@ class _SmMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/statefull');
-            }, 
-            text: 'Contador Stateful',
-            color: Colors.black,
-          ),
-          const SizedBox( width: 10 ),
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/provider');
-            }, 
-            text: 'Contador con Provider',
-            color: Colors.black,
-          ),
-          const SizedBox( width: 10 ),
-          CustomFlatButton(
-            onPressed: () {
-              locator<NavigationService>().navigateTo('/no-existe');
-            }, 
-            text: 'Pagina 404',
-            color: Colors.black,
-          ),
-        ],
+        children: _buildButtons(),
       ),
     );
   }
 }
+
+
+List<Widget> _buildButtons() {
+    return [
+      CustomFlatButton(
+        onPressed: () {
+          locator<NavigationService>().navigateTo('/statefull');
+        },
+        text: 'Contador Stateful',
+        color: Colors.black,
+      ),
+      const SizedBox(width: 10),
+      CustomFlatButton(
+        onPressed: () {
+          locator<NavigationService>().navigateTo('/provider');
+        },
+        text: 'Contador con Provider',
+        color: Colors.black,
+      ),
+      const SizedBox(width: 10),
+      CustomFlatButton(
+        onPressed: () {
+          locator<NavigationService>().navigateTo('/no-existe');
+        },
+        text: 'Pagina 404',
+        color: Colors.black,
+      ),
+      const SizedBox(width: 10),
+      CustomFlatButton(
+        onPressed: () {
+          locator<NavigationService>().navigateTo('/statefull/100');
+        },
+        text: 'Statefull 100',
+        color: Colors.black,
+      ),
+      const SizedBox(width: 10),
+      CustomFlatButton(
+        onPressed: () {
+          locator<NavigationService>().navigateTo('/provider?q=258');
+        },
+        text: 'Provider 258',
+        color: Colors.black,
+      ),
+    ];
+  }

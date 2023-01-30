@@ -5,12 +5,16 @@ import 'package:provider/provider.dart';
 import '../shared/custom_flat_button.dart';
 
 class CounterProviderView extends StatelessWidget {
-  const CounterProviderView({super.key});
+  final String query;
+  const CounterProviderView({
+    super.key, 
+    required this.query
+  });
 
   @override
    Widget build(BuildContext context) {
      return ChangeNotifierProvider(
-      create: (context) => CounterProvider(),
+      create: (context) => CounterProvider(query),
        child: const _CounterProviderBody(),
      );
    }

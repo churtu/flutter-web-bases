@@ -4,9 +4,6 @@ import 'package:bases_web/ui/views/counter_view.dart';
 import 'package:bases_web/ui/views/not_found_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:bases_web/ui/pages/counter_page.dart';
-import 'package:bases_web/ui/pages/counter_provider_page.dart';
-import 'package:bases_web/ui/pages/not_found_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings){
@@ -14,12 +11,12 @@ class RouteGenerator {
     switch (settings.name) {
       case '/statefull':
         return _fadeRoute(
-          const CounterView(),
+          const CounterView(base: '5'),
           settings.name!
         );
       case '/provider':
         return _fadeRoute(
-          const CounterProviderView(),
+          const CounterProviderView(query: '0'),
           settings.name!
         );
       default:
